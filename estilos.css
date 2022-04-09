@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+	position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(45deg,#8FFF00,#FFC300,#FF5733,#C70039,#900C3F,#581845,#000); 
+    background-size: 400%;
+    animation: animacion-fondo 35s ease-in forwards infinite;
+}
+
+body:after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #FFFFFF66;
+	
+}
+
+.contenedor-app {
+	transform: scale(1.3);
+	z-index: 10;
+}
+
+.contenedor-agregar {
+	display: flex;
+	margin-top: 5rem;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+}
+
+#input-num {
+	border: none;
+    outline: none;
+    text-align: center;
+    max-width: 10rem;
+	font-size: 2rem;
+	border-radius: 1rem;
+	background-color: #000000AA;
+	color: #FFF;
+	margin: 1rem;
+	padding: 2rem;
+}
+
+#boton-num {
+	outline: none;
+	border: none;
+	font-size: 2rem;
+	font-weight: 900;
+	color: #000;
+	border-radius: 1rem;
+	cursor: pointer;
+	background: #FFFFFFBB;
+	margin: 1rem;
+	padding: 2rem;
+	z-index: 10;
+}
+
+#boton-num:hover {
+	background: #000000AA;
+	color: #FFF;
+}
+
+#boton-ordenar {
+	outline: none;
+	border: none;
+	font-size: 2rem;
+	border-radius: 1rem;
+	background: #FFFFFFBB;
+	cursor: pointer;
+	margin: 1rem;
+	padding: 2rem;
+	z-index: 10;
+}
+
+#boton-ordenar:hover {
+	background: #000000AA;
+	color: #FFF;
+}
+
+.contenedor-cajas {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+}
+
+.numeros {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 6rem;
+	height: 6rem;
+	margin: 2rem;
+	font-size: 3rem;
+	color: #FFF;
+	cursor: pointer;
+	background-color: #000000AA;
+	border-radius: 50%;
+	z-index: 100;
+}
+
+.contenedor-tacho {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #FFFFFFCC;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	transition: .3s;
+}
+
+.contenedor-tacho:hover {
+	opacity: 1;
+}
+
+.tacho {
+	position: absolute;
+	font-size: 2rem;
+	color: #000;
+	z-index: 100;
+}
+
+.tacho:hover {
+	opacity: 1;
+}
+
+@keyframes animacion-fondo {
+	0%{background-position: left;}
+	50%{background-position: right;}
+	100%{background-position: left;}
+}
