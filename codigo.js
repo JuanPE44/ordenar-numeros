@@ -14,15 +14,15 @@ const actualizarNumeros = () => {
 	return numeros
 }
 
-const precionarNumero = () => {
+const eliminarNumero = () => {
 	actualizarNumeros().forEach(numero => {
-  numero.onclick = () => {
-  	contCajas.removeChild(numero);
-  }
-});
+        numero.onclick = () => {
+        	contCajas.removeChild(numero);
+        }
+    });
 }
 
-/*const crearTacho = () => {
+const crearTacho = () => {
 	const contTacho = document.createElement('div');
 	const tacho = document.createElement('i');
 
@@ -31,16 +31,22 @@ const precionarNumero = () => {
 
 	tacho.classList.add('fa-regular', 'fa-trash-can', 'tacho');
 	return contTacho;
-}*/
+}
 
-const agregarNum = () => {
+const agregarNumero = () => {
 	const divNum = document.createElement('DIV');
-	divNum.innerHTML = inputNum.value;
+	const num = document.createElement('DIV');
+
 	divNum.classList.add('numeros')
+	divNum.appendChild(num);
+	divNum.appendChild(crearTacho());
+
+	num.innerHTML = inputNum.value;
+	
 	contCajas.appendChild(divNum);
 	inputNum.value = '';	
-	//divNum.appendChild(crearTacho());
-	precionarNumero();
+	
+	eliminarNumero();
 }		
 
 const crearArray = () => {
@@ -48,13 +54,14 @@ const crearArray = () => {
 	const cajas = contCajas.childNodes;
 
     for(let caja of cajas) {
-    	console.log(caja.innerHTML);
-    	if(!isNaN(caja.innerHTML)) {
-
-    		array.push(parseInt(caja.innerHTML))
-    	} 
-    }
-			
+    	const cajaHijos = caja.childNodes;
+    	for(let num of cajaHijos) {
+    		if(!isNaN(num.innerHTML)) {
+    		    array.push(parseInt(num.innerHTML));
+    	    } 
+    	}
+    	
+    }		
 	return array;
 }
 
@@ -72,32 +79,35 @@ const ordernarArray = () => {
 		}
 	}
 	return array;
-			
 }
 	
 const mostrarArrayOrdenado = () => {
 	let arrayOrdenado = ordernarArray();
 	const cajas = contCajas.childNodes;
-	let num = 0;
+	let i = 0;
 
-    for(let caja of cajas) {
-    	if(!isNaN(caja.innerHTML)) {
-    		caja.innerHTML = arrayOrdenado[parseInt(num)]
-    		num++;
-    	} 
-    }
+	for(let caja of cajas) {
+    	const cajaHijos = caja.childNodes;
+    	for(let num of cajaHijos) {
+    		if(!isNaN(num.innerHTML)) {
+    		    num.innerHTML = arrayOrdenado[parseInt(i)]
+    		    i++;
+    	    } 
+    	}
+    }		
 }
 
 // Ejecutar
 
 
 botonNum.onclick = () => {
-	if (inputNum.value.length>0) {
-		agregarNum();
+	if ((inputNum.value.length>0)&&(!isNaN(inputNum.value))) {		
+		agregarNumero();
 	}
 }
 
 botonOrdenar.onclick = () => {
 	mostrarArrayOrdenado();
-
 }
+
+
